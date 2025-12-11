@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Login Test</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #user-info {
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: none;
+      max-width: 320px;
+      text-align: center;
+    }
+    #user-info img {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Test Google Login</h2>
+
+  <!-- Google Sign-in button -->
+  <div id="g_id_onload"
+       data-client_id="1088617361698-1aps7k9b7fouv4ifvs6vpr14ne5ugoll.apps.googleusercontent.com"
+       data-context="signin"
+       data-ux_mode="popup"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+
+  <!-- User info card -->
+  <div id="user-info">
+    <img id="user-pic" src="" alt="User Picture" />
+    <h3 id="user-name"></h3>
+    <p id="user-email"></p>
+    <button onclick="signOut()">Sign Out</button>
+  </div>
+
+  <script>
+    function handleCredentialResponse(response) {
+      const token = response.credential;
+
+      // Decode the JWT payload (for testing only)
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      console.log("Google ID Token:", token);
+      console.log("Decoded payload:", payload);
+
+      document.getElementById("user-info").style.display = "block";
+      document.getElementById("user-pic").src = payload.picture;
+      document.getElementById("user-name").textContent = payload.name;
+      document.getElementById("user-email").textContent = payload.email;
+    }
+
+    function signOut() {
+      google.accounts.id.disableAutoSelect();
+      document.getElementById("user-info").style.display = "none";
+    }
+  </script>
+</body>
+</html>

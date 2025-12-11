@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberLock – User Access</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">PIXEL ACCESS</h1>
+    <p class="subtitle">LOGIN OR CREATE AN ACCOUNT</p>
+
+    <div class="tabs">
+      <button class="tab active" id="login-tab">LOGIN</button>
+      <button class="tab" id="register-tab">REGISTER</button>
+    </div>
+
+    <div id="form-container">
+      <!-- Login Form -->
+      <form id="login-form" class="form active">
+        <input type="email" id="login-email" placeholder="EMAIL" required />
+        <input type="password" id="login-password" placeholder="PASSWORD" required />
+        <button type="submit" class="btn">→ LOGIN</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="form">
+        <input type="text" id="register-name" placeholder="NAME" required />
+        <input type="email" id="register-email" placeholder="EMAIL" required />
+        <input type="password" id="register-password" placeholder="PASSWORD" required />
+        <button type="submit" class="btn">→ REGISTER</button>
+      </form>
+    </div>
+
+    <div id="message-box"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
